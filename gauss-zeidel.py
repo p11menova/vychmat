@@ -83,6 +83,13 @@ def get_C_D_matrix(M):
             else:
                 c.append(-1 * M[i][j] / a_ii)
         C.append(c)
+        if all([c1==0 for c1 in c]):
+            if D[-1] != 0:
+                print("cистема не совместна! решений НЕТ")
+                exit(0)
+            if D[-1] == 0:
+                print("да тут ваще бесконечно количество решений..")
+                exit(0)
 
     return C, D
 
@@ -93,6 +100,7 @@ def read_M():
     if start.strip() == "f" and os.path.exists("matrix.txt"):
         try:
             eps, n, M = read_from_file()
+
             return eps, n, M
 
         except ValueError:
@@ -102,7 +110,7 @@ def read_M():
         n = int(input("введите размерность матрицы (≤20): "))
         eps = float(input("введите точность: "))
         print("введите матрицу:")
-        M = [input().split(" ") for _ in range(n)]
+        M = [input().strip().split() for _ in range(n)]
         return eps, n, M
 
 
