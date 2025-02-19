@@ -1,8 +1,9 @@
 import random
 
 matrix = []
-for i in range(20):
-    row = [random.randint(1, 10) for _ in range(21)]
+n = random.randint(1, 20)
+for i in range(n):
+    row = [random.randint(1, 10) for _ in range(n+1)]
     row[i] = random.randint(1000, 2000)
     matrix.append(" ".join(map(str, row)))
 
